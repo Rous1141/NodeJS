@@ -1,0 +1,12 @@
+{
+  "name": "ex02",
+  "version": "1.0.0",
+  "description": "HTTP Webpage",
+  "main": "index.js",
+  "scripts": {
+	"start":"node index",
+  "test": "hello world"
+  },
+  "author": "Annie",
+  "license": "ISC"
+}

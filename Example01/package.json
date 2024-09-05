@@ -1,0 +1,19 @@
+{
+  "name": "ex01",
+  "version": "1.0.0",
+  "description": "Quick Example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "keywords": [
+    "1141"
+  ],
+  "author": "Annie",
+  "license": "ISC"
+}
