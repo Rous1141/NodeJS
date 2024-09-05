@@ -1,0 +1,16 @@
+{
+  "name": "ex03",
+  "version": "1.0.0",
+  "description": "Web Server With Express",
+  "main": "index.js",
+  "scripts": {
+    "test": "Hello world",
+    "start": "node index"
+  },
+  "author": "Annie",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.18.1"
+  }
+}
