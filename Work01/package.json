@@ -1,0 +1,15 @@
+{
+  "name": "work01",
+  "version": "1.0.0",
+  "description": "Exercise01",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello world",
+    "start": "node index"
+  },
+  "author": "Annie",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
