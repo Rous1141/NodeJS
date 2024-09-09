@@ -1,0 +1,15 @@
+{
+  "name": "node-mongoose",
+  "version": "1.0.0",
+  "description": "A test example for connecting node with mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello world",
+    "start": "node index"
+  },
+  "author": "Annie",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.6.1"
+  }
+}
