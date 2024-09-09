@@ -4,7 +4,7 @@ const hostname = 'localhost'
 const path = require('path')
 //__dirname is a special var that defines the absolute path of the file it's being used
 const pagesFolder = path.join(__dirname,'public/pages')
-const loginPath = path.join(pagesFolder,'index.html')
+const loginPath = path.join(pagesFolder,'login.html')
 const errorPath = path.join(pagesFolder,'error.html')
 const homepagePath = path.join(pagesFolder,'welcome.html')
 //using Express framework
@@ -16,12 +16,15 @@ const bodyParser = require('body-parser')
 const app = express()
 var login = false
 // using bodyParser.urlencoded feature to parse the data from html forms and you cna read it data from req.body now 
-app.use(bodyParser.urlencoded({extends:true}))
+app.use(bodyParser.urlencoded({extended:true})) // bodyParser.urlencoded is deprecated and will need to use {extended:true} to prevent any warning
+//app.use(express.urlencoded({extended:true})) / This also another way to parse urlencoded data
+
 //serving static page folder with express middleware express.static
 app.use(express.static(pagesFolder)) 
 try {
-	app.get('/' || 'index.html',(req,res)=>{
+	app.get('/' || 'login.html',(req,res)=>{
 		//start the server at the login page
+		login = false
 		res.sendFile(loginPath)
 	})
 	//route to handle login requests
