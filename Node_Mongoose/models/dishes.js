@@ -4,13 +4,16 @@ const Schema = mongoose.Schema //create a Schema object
 // Create a Dish schema with name and description
 const commentSchema = new Schema({
     comment:{
-
+        type: 'string',
+        required:true,
     },
     author:{
-
+        type: 'string',
+        required:true,
     },
     rating:{
-
+        type: 'string',
+        required:true,
     }
 },{
     timestamps: true,
@@ -26,7 +29,10 @@ const dishSchema = new Schema({
         type:'string',
         required:true
     },
-    comments:[commentSchema]
+    comments:{
+        type:[commentSchema]
+        // this schema will be used to create a new comment in each dish
+    }
 },{
     timestamps: true, // automatically adds createdAt and updatedAt current time
 }) 
