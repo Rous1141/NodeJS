@@ -7,6 +7,7 @@ const hostname = 'localhost'
 const port = 27017;
 const dbType = 'conFusion'
 const url = `mongodb://${hostname}:${port}/${dbType}`
+
 const conn = mongoose.connect(url)
 
 conn.then((db)=>{

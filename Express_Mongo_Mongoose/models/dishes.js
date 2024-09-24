@@ -29,22 +29,6 @@ const dishSchema = new Schema({
         type:'string',
         required:true
     },
-    image:{
-        type:'string',
-        required:true
-    },
-    category:{
-        type:'string',
-        required:true
-    },
-    price:{
-        type:Currency,
-        required:true
-    },
-    featured:{
-        type:boolean,
-        default:false
-    },
     comments:{
         type:[commentSchema]
         // this schema will be used to create a new comment in each dish
