@@ -1,0 +1,35 @@
+head
+    title #{title}
+    link(rel="stylesheet", href="/stylesheets/product.css")
+body
+    h1 Product List
+    h4
+        a(href="/home") Return
+    .product-list
+        each product in data
+            .product-card
+                .product-image
+                    img(
+                        src=`${product.image}`
+                        alt=product.productName
+                    )
+                .product-details
+                    h2 #{product.productName}
+                    p Description: #{product.description}
+                    p Price: $#{product.price}
+                    p Created At: #{new Date(product.createdAt).toLocaleDateString()}
+                    p Last Updated: #{new Date(product.updatedAt).toLocaleDateString()}
+                    .button-container
+                        a.button-update(href=`/category/${categoryId}/product/update/${product._id}`) Update
+                        button.button-delete(onclick=`return confirmDelete(event, "${categoryId}", "${product._id}");`) Delete
+    // Button to Add Product
+    a.button-add(href=`/category/${categoryId}/product/insert`) Add Product
+    script.
+        function confirmDelete(event, categoryId, productId) {
+        event.preventDefault(); // Prevent default button behavior
+        // Show confirmation dialog
+        const confirmed = confirm("Are you sure you want to delete this product?");
+            if (confirmed) {
+                window.location.href = `/category/${categoryId}/product/delete/${productId}`;
+            }
+        }

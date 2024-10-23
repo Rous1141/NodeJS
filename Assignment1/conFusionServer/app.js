@@ -5,11 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 const categoryRoute = require('./routes/categoryRouter');
 const registerRoute = require('./routes/registerRouter');
 const loginRoute = require('./routes/loginRouter');
-
+const jwtAuthen =  require('./controller/authenJWT')
 
 //Use Mongoose and Mongo DB 
 const mongoose = require('mongoose');
@@ -27,19 +26,18 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//API
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/category', categoryRoute);
-app.use('/register', registerRoute);
-app.use('/login', loginRoute);
+app.use('/api/category',jwtAuthen, categoryRoute);
+app.use('/api/register', registerRoute);
+app.use('/api/login', loginRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

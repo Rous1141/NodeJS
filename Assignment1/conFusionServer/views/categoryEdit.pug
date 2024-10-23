@@ -1,0 +1,14 @@
+head
+    title Update Category
+    link(rel="stylesheet", href="/stylesheets/productEdit.css")
+body
+    h1 Update Category: #{category.categoryName}
+    .form
+        form(action=`/category/${category._id}/update` method="POST")
+            label(for="categoryName") Category Name:
+            input(type="text" name="categoryName" value=category.categoryName required)
+            label(for="description") Description:
+            textarea(name="description" required)= category.description
+            button(type="submit") Update Category
+            a(href=`/home`) Cancel
+

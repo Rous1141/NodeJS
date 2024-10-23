@@ -2,99 +2,38 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const categoryRouter = express.Router()
 //Check Autehntication with JWT
-const authenticateJWT = require('./authenJWT')
+const authenticateJWT = require('../controller/authenJWT')
 
 //using body-parser
 categoryRouter.use(bodyParser.json())
 
 //Connect the route to Mongoose Schema
 const Category = require("../models/category")
+const {getCategory,putCategory,deleteCategory,postCategory,
+        getCategoryById,putCategoryById,deleteCategoryById,postCategoryById
+} = require("../controller/categoryController") // import the fuction from controller
+
+
 
 categoryRouter.route('/') // route at http://.../category
-    .get(authenticateJWT,(req, res, next) => {
-        Category.find({})
-            .then((category) => {
-                res.statusCode = 200
-                res.json(category)
-            }, (err) =>
-                next(err))
-            .catch((err) => next(err))
-    })
-    .post(authenticateJWT,(req, res, next) => {
-        Category.create(req.body)
-            .then((category) => {
-                console.log('Category Created! ',+category)
-                res.statusCode = 200
-                res.json(category)
-            }, (err) =>
-                next(err))
-            .catch((err) => next(err))
-    })
-    .put(authenticateJWT,(req, res, next) => {
-        res.statusCode = 403;
-        res.end('PUT operation not supported on /category')
-    })
-    .delete(authenticateJWT,(req, res, next) => {
-        Category.deleteMany({})
-            .then((respone) => {
-                console.log('All categories deleted!')
-                res.statusCode = 200
-                res.json(respone)
-            }, (err) => next(err))
-            .catch((err) => next(err))
-    })
+    .get(getCategory)
+    .post(postCategory)
+    .put(putCategory)
+    .delete(deleteCategory)
 //end route
 // Create another route to perform on each specific 'category' route at http://.../category/:id
 categoryRouter.route('/:categoryId')
-    // .all((req, res, next) => {
-    //     console.log(`Request received to /dishes/${req.params.dishId}`)
-    //     res.setHeader('Content-Type', 'text/plain')
-    //     next()
-    // }) -- ERROR -- Don't uncomment
-    .get(authenticateJWT,(req, res, next) => {
-        Category.findById(req.params.categoryId)
-            .then((category) => {
-                res.statusCode = 200
-                console.log("Found the category: ",+category.categoryName)
-                res.json(category)
-            }, (err) => next(err))
-            .catch((err) => next(err))
-        //res.end(`Getting the dish with the dish ID: ${req.params.categoryId}`)
-    })
-    .post(authenticateJWT,(req, res, next) => {
-        res.statusCode = 403;
-        res.end(`POST operation not supported on /dishes/${req.params.categoryId}`)
-    })
-
-    .put(authenticateJWT,(req, res, next) => {
-        Category.findByIdAndUpdate(req.params.categoryId, req.body,
-            { new: true })
-            .then((category) => {
-                res.statusCode = 200
-                console.log("Updated the category: ",+category)
-                res.json(categoryId)
-            }, (err) => next(err))
-            .catch((err) => next(err))
-        // res.write(`Updating the dish with ID: ${req.params.categoryId}\n`)
-        // res.end(`To name: ${req.body.name} with description: ${req.body.description}`)
-    })
-
-    .delete(authenticateJWT,(req, res, next) => {
-        Category.findByIdAndDelete(req.params.categoryId)
-        .then(() => {
-                res.statusCode = 200
-                console.log(`Removed the category with the ID: ${req.params.categoryId}`)
-            }, (err) => next(err))
-        // res.end(`Delete the dish with the ID: ${req.params.categoryId}`)
-    })
+    .get(getCategoryById)
+    .post(postCategoryById)
+    .put(putCategoryById)
+    .delete(deleteCategoryById)
 //end route
 // Sub-route to CRUD products inside a category. At route http://.../category/:id/products
 categoryRouter.route(`/:categoryId/products`)
-.get(authenticateJWT,(req,res,next)=>{
+.get((req,res,next)=>{
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null){
-            console.log('Products Found with this Category ID',+req.params.categoryId)
             res.statusCode = 200;
             res.setHeader("Content-Type","application/json")
             res.json(category.products)
@@ -107,7 +46,7 @@ categoryRouter.route(`/:categoryId/products`)
     .catch((err)=> next(err))
 })
 
-.post(authenticateJWT,(req,res,next)=>{
+.post((req,res,next)=>{
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null){
@@ -127,11 +66,11 @@ categoryRouter.route(`/:categoryId/products`)
     },(err) => next(err))
     .catch((err)=> next(err))
 })
-.put(authenticateJWT,(req, res, next) => {
+.put((req, res, next) => {
     res.statusCode = 403;
     res.end('PUT operation not supported on http://.../category/:id/products')
 })
-.delete(authenticateJWT,(req,res,next)=>{
+.delete((req,res,next)=>{
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null){
@@ -158,7 +97,7 @@ categoryRouter.route(`/:categoryId/products`)
 
 // Sub-route to CRUD a product inside a category. At route http://.../category/:id/products/:productId
 categoryRouter.route(`/:categoryId/products/:productId`)
-.get(authenticateJWT,(req,res,next)=>{
+.get((req,res,next)=>{
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null && category.products.id(req.params.productId)!=null){
@@ -175,15 +114,18 @@ categoryRouter.route(`/:categoryId/products/:productId`)
     .catch((err)=> next(err))
 })
 
-.put(authenticateJWT,(req,res,next)=>{
+.put((req,res,next)=>{
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null && category.products.id(req.params.productId)!=null){
+            if(req.body.productName){
+                category.products.id(req.params.productId).productName = req.body.description; // Reverse
+               }
            if(req.body.price){
             category.products.id(req.params.productId).price = req.body.price;
            }
            if(req.body.description){
-            category.products.id(req.params.productId).price = req.body.description;
+            category.products.id(req.params.productId).description =  req.body.productName ;// Reverse
            }
            category.save()
             res.statusCode = 200;
@@ -197,21 +139,23 @@ categoryRouter.route(`/:categoryId/products/:productId`)
     },(err) => next(err))
     .catch((err)=> next(err))
 })
-.post(authenticateJWT,(req, res, next) => {
+.post((req, res, next) => {
     res.statusCode = 403;
     res.end(`POST operation not supported on http://.../category/${req.params.categoryId}/products/${req.params.productId}`)
 })
-.delete(authenticateJWT,(req,res,next)=>{
+.delete((req,res,next)=>{
+    console.log('Category Found with this ID',+req.params.categoryId)
+    console.log('Product Found with this ID',+req.params.productId)
     Category.findById(req.params.categoryId)
     .then((category) => {
         if(category!= null && category.products.id(req.params.productId)!=null){
-            console.log('Product Found with this ID',+req.params.productId)
             category.products.id(req.params.productId).deleteOne()
             category.save()
-            then(()=>{
+            .then(()=>{
+                console.log("Delete Complete!!!")
                 res.statusCode = 200;
                 res.setHeader("Content-Type","application/json")
-                res.json(category)
+                next()
             },(err) => next(err))
            
         }else{

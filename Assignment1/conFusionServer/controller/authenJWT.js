@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const authenticateJWT = (req, res, next) => {
-  const token = req.headers.authorization;
+  var token = req.headers['authorization'];
+  console.log('Authorization token: ', token);
 
   if (!token) {
     console.log('No Token')
@@ -10,12 +11,13 @@ const authenticateJWT = (req, res, next) => {
 
   jwt.verify(token.split(' ')[1], 'secretKey', (err, user) => {
     if (err) {
-      console.log('Wrong Token!')
-      return res.status(401).json({ message: 'Wrong token' });
+     console.log('Wrong Token!')
+     res.status(401).json({ message: 'Wrong token' });
+     var code = "Wrong Authentication"
+     return res.redirect('/')
     }
     req.user = user; // Store the user info in request
     next();
   });
 };
-
 module.exports = authenticateJWT;
