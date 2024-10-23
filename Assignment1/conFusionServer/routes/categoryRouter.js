@@ -119,13 +119,13 @@ categoryRouter.route(`/:categoryId/products/:productId`)
     .then((category) => {
         if(category!= null && category.products.id(req.params.productId)!=null){
             if(req.body.productName){
-                category.products.id(req.params.productId).productName = req.body.description; // Reverse
+                category.products.id(req.params.productId).productName = req.body.productName; // Reverse
                }
            if(req.body.price){
             category.products.id(req.params.productId).price = req.body.price;
            }
            if(req.body.description){
-            category.products.id(req.params.productId).description =  req.body.productName ;// Reverse
+            category.products.id(req.params.productId).description = req.body.description;// Reverse
            }
            category.save()
             res.statusCode = 200;

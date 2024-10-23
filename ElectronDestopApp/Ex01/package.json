@@ -1,0 +1,15 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "First Electron App",
+  "main": "index.js",
+  "scripts": {
+    "test": "hello world",
+    "start": "electron ."
+  },
+  "author": "Annie",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^33.0.2"
+  }
+}
