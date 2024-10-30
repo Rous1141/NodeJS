@@ -4,7 +4,7 @@ const createWindow = () => {
     const win = new BrowserWindow({
       width: 800,
       height: 600,
-      icon: path.join(__dirname, 'public/images/icon.png'),
+      icon: path.join(__dirname, 'public','images','icon'),
       webPreferences: {
         preload: path.join(__dirname, 'preload.js')
       } // Run a script before the window is rendered -> for any data need to fetch and view on the screen

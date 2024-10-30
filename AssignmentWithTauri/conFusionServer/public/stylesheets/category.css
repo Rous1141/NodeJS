@@ -1,0 +1,102 @@
+body {
+    padding: 20px;
+  }
+  
+  .cat-button {
+    background: none; 
+    border: none; 
+    color: #333; 
+    cursor: pointer; 
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+  }
+  
+  .card-header {
+    background-color: #a0ceff;
+    padding: 10px;
+    border-radius: 6px 6px 0 0;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 15px;
+    font-size: 16px;
+  }
+  
+  .card-body p {
+    margin: 8px 0;
+    color: #333;
+  }
+  
+  .card-body p:nth-child(2) {
+    color: #555;
+  }
+  
+  .card-body p:nth-child(3) {
+    font-size: 14px;
+    color: #777;
+  }
+
+
+.button-update, .button-delete {
+  padding: 10px 15px;
+  margin-right: 10px;
+  margin-top: 2%;
+  color: white; 
+  background-color: #007bff; 
+  border: none;
+  border-radius: 5px; 
+  text-decoration: none; 
+  transition: background-color 0.2s; 
+  float: left;
+  pointer-events: auto;
+}
+
+.button-update:hover {
+  background-color: #0056b3;
+}
+
+.button-delete {
+  float: right;
+  background-color: #dc3545; 
+}
+
+.button-delete:hover {
+  background-color: #c82333;
+}
+
+.button-add {
+    position: fixed; /* Fixes the button to a specific position on the screen */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    left: 20px; /* Distance from the left of the viewport */
+    padding: 10px 15px; /* Padding for the button */
+    background-color: #28a745; /* Bootstrap success color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.button-add:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+  

@@ -1,0 +1,17 @@
+head
+    title Update Product
+    link(rel="stylesheet", href="/stylesheets/productEdit.css")
+body
+    h1 Update Product: #{product.productName}
+    .form
+        form(action=`/category/${categoryId}/product/${product._id}/update` method="POST")
+            label(for="productName") Product Name:
+            input(type="text" name="productName" value=product.productName required)
+            label(for="description") Description:
+            textarea(name="description" required)= product.description
+            label(for="price") Price:
+            input(type="number" name="price" value=product.price required step="0.1")
+            label(for="image") Image URL:
+            input(type="text" name="image" value=product.image required)
+            button(type="submit") Update Product
+            a(href=`/category/${categoryId}`) Cancel

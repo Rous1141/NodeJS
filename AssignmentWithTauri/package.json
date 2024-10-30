@@ -1,0 +1,18 @@
+{
+  "name": "fullapp",
+  "version": "1.0.0",
+  "description": "fullstacking",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "cd frontend && npm run tauri dev",
+    "backend": "cd Confusionserver && npm start",
+    "fullstack": "concurrently \"npm run frontend\" \"npm run backend\""
+  },
+  "author": "annie",
+  "license": "ISC",
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.3",
+    "@tauri-apps/cli": "^2.0.4",
+    "concurrently": "^9.0.1"
+  }
+}
