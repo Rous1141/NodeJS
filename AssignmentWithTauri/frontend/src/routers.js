@@ -5,6 +5,8 @@ import {
 import Login from './Components/Login';
 import Register from './Components/Register';
 import App from './App';
+import Error404 from './Components/Error404';
+import Category from './Components/Category';
 export const router = createBrowserRouter([
     {
         path:'/',
@@ -16,7 +18,15 @@ export const router = createBrowserRouter([
     },
     {
         path: "/register",
-        element: <Register />
+        element: <Register/>
     },
+    {
+        path: "/category",
+        element: <Category/>
+    },
+    {
+        path: "*",
+        element: <Error404/>
+    }
 ]);
 

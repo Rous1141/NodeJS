@@ -14,6 +14,8 @@ const express = require('express');
     }
     callback(null, corsOptions);
  };
-  
+ 
+
+
  exports.cors = cors();
 exports.corsWithOptions = cors(corsOptionsDelegate);

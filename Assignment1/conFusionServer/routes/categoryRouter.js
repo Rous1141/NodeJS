@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const categoryRouter = express.Router()
 //Check Autehntication with JWT
-const authenticateJWT = require('../controller/authenJWT')
 
 //using body-parser
 categoryRouter.use(bodyParser.json())

@@ -2,20 +2,36 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Css/Login.css';
 import { login } from '../Api/login';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = async(data) => {
-       const response = await login(data)
-       console.log(response)
-        // Handle login logic here
-        if(!response){
-            alert("Cannot Connect To Server")
-        }
-        else if(response.status>300){
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            console.log(tokenResponse)
+            const userInfo = await axios.get(
+                'https://www.googleapis.com/oauth2/v3/userinfo',
+                { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } })
+            console.log(await userInfo.data)
+        },
+        onError: error => alert(error)
+    })
+    const onSubmit = async (data) => {
+        const response = await login(data)
+        // Login logic here with the Token in response
+         if (!response) {
             alert("Something went wrong, cannot login!")
         }
-        else{
+        else {
+            const token = await response.data.token
+            if(token===undefined) {
+                alert("Network Error")
+            }
+            sessionStorage.setItem("token", token)
+            navigate("/category")
             alert("Login Complete!")
         }
     };
@@ -43,8 +59,16 @@ const Login = () => {
 
                     <button type="submit">Login</button>
                 </form>
+                <button className="google-login-button" onClick={()=>handleGoogleLogin()}>
+                    <img
+                        src="./ggicon.png"
+                        alt="Google icon"
+                        className="google-icon"
+                    />
+                    Login with Google
+                </button>
                 <p className="signup-link">
-                    Don't have an account? <a href="/signup">Sign up here</a>.
+                    Don't have an account? <Link to="/register">Sign up here</Link>.
                 </p>
             </div>
         </div>

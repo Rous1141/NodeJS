@@ -2,15 +2,12 @@
  const bodyParser = require('body-parser')
  const Account = require('../models/account')
  const registerRouter = express.Router();
- const cors = require('./cors')
  registerRouter.use(bodyParser.json())
- // CORS handlers
  registerRouter.route('/')
- .options(cors.corsWithOptions,(req,res)=>{res.sendStatus(200)})
- .post(cors.corsWithOptions,(req,res,next) => {
-    var username = req.params.username
+ .post((req,res,next) => {
+    var userName = req.params.userName
     // Check if user already exists
-    const userExists = Account.findOne({ "username":username });
+    const userExists = Account.findOne({ "userName":userName });
     if (userExists===null){
         return res.status(400).json({ message: 'Error: User already exists!' });
     } 
@@ -24,7 +21,7 @@
             .catch((err) => next(err))
   })
   
-.get(cors.cors,(req, res,next) => {
+.get((req, res,next) => {
     Account.find({})
      .then((users) => {
         res.statusCode = 400;
@@ -33,7 +30,7 @@
       }, (err) => next(err))
      .catch((err) => next(err))
   })
-.delete(cors.corsWithOptions,(req, res,next) => {
+.delete((req, res,next) => {
     Account.find({})
      .then((users) => {
         res.statusCode = 400;
@@ -42,7 +39,7 @@
       }, (err) => next(err))
      .catch((err) => next(err))
   })
-.put(cors.corsWithOptions,(req, res,next) => {
+.put((req, res,next) => {
     Account.find({})
      .then((users) => {
         res.statusCode = 400;

@@ -3,13 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var cors = require('./routes/cors');
 
 var indexRouter = require('./routes/index');
 const categoryRoute = require('./routes/categoryRouter');
 const registerRoute = require('./routes/registerRouter');
 const loginRoute = require('./routes/loginRouter');
 const jwtAuthen = require('./controller/authenJWT')
+const cors = require('cors');
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true, // enables passing cookies if needed
+  };
+  
 
 //Use Mongoose and Mongo DB 
 const mongoose = require('mongoose');
@@ -34,6 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //API - with CORS for my FE
+app.use(cors(corsOptions));
 app.use('/', indexRouter);
 app.use('/api/category',  jwtAuthen, categoryRoute);
 app.use('/api/register',  registerRoute);
