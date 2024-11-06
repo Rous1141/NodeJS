@@ -1,0 +1,17 @@
+head
+    title Add Product
+    link(rel="stylesheet", href="/stylesheets/productEdit.css")
+body
+    h1 Add A New Product
+    .form
+        form(action=`/category/${categoryId}/product/insert` method="POST")
+            label(for="productName") Product Name:
+            input(type="text" name="productName" value="name" required)
+            label(for="description") Description:
+            textarea(name="description" required)= "Description"
+            label(for="price") Price:
+            input(type="number" name="price" value=100 required step="0.1")
+            label(for="image") Image URL:
+            input(type="text" name="image" value="image URL here" required)
+            button(type="submit") Add New Product
+            a(href=`/category/${categoryId}`) Cancel

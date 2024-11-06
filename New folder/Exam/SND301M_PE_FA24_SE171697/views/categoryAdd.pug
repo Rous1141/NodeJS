@@ -1,0 +1,13 @@
+head
+    title Add Category
+    link(rel="stylesheet", href="/stylesheets/productEdit.css")
+body
+    h1 Add A New Category
+    .form
+        form(action="/category/insert" method="POST")
+            label(for="categoryName") Category Name:
+            input(type="text" name="categoryName" value="name" required)
+            label(for="categoryDescription") Description:
+            textarea(name="categoryDescription" required)= "Description"
+            button(type="submit") Add New Category
+            a(href=`/home`) Cancel

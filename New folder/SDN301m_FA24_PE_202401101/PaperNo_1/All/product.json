@@ -1,0 +1,117 @@
+[{
+  "_id": {
+    "$oid": "64916da37f8a6ac611905603"
+  },
+  "productName": "iPad Pro M4 2024",
+  "productDescription": "M4 features an entirely new display engine to enable the precision, color, and brightness of the Ultra Retina XDR display.",
+  "image": "https://www.apple.com/newsroom/images/2024/05/apple-unveils-stunning-new-ipad-pro-with-m4-chip-and-apple-pencil-pro/article/Apple-iPad-Pro-Ultra-Retina-XDR-with-OLED-240507_big.jpg.large_2x.jpg",
+  "price": 1139,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666bf1106fbaf0ba0fdb7d5"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916de77f8a6ac611905607"
+  },
+  "productName": "Amazon Kindle Paperwhite Signature Edition (32GB)",
+  "productDescription": "With auto-adjusting front light, wireless charging, 6.8“ display, and up to 10 weeks of battery life – Without Lockscreen Ads – Black",
+  "image": "https://m.media-amazon.com/images/I/41BEfYOD4rL._AC_.jpg",
+  "price": 149,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666bf1106fbaf0ba0fdb7d5"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916e0b7f8a6ac61190560a"
+  },
+  "productName": "Pixel Tablet 2",
+  "productDescription": "The Google Pixel Tablet is a curious device, with Google’s first slate in a long time serving double duty as a tablet and a smart home display.",
+  "image": "https://lh3.googleusercontent.com/CqYdkGKL2vQi0ThQaBsrKSDTia4cJqNlovS6wpwIGOIjnUK_jSEDdUVLHrx9J4oWYzkSwXOcmX9_hi7iy-lEkC1taH6xc1HBQijH",
+  "price": 389,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666bf1106fbaf0ba0fdb7d5"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916e727f8a6ac611905610"
+  },
+  "productName": "MacBook Pro (16 inch, 2023)",
+  "productDescription": "The $1599 M3 MacBook Pro 14 is Apple's new entry-level Pro, with slightly faster performance than last year's M2 chip.",
+  "image": "https://m.media-amazon.com/images/I/41n9lDnd0VL._AC_SY350_.jpg",
+  "price": 1599,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666c124bb47bc0cdc247978"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916ea17f8a6ac611905612"
+  },
+  "productName": "Dell XPS 17 9720 ",
+  "productDescription": "Cool and light. The black carbon fiber palm rest, inspired by the aerospace industry, allows for maximum strength and minimal weight.",
+  "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-17-9720/media-gallery/notebook-xps-17-9720-silver-gallery-3.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=658&qlt=100,1&resMode=sharp2&size=658,402&chrss=full",
+  "price": 2949,
+  "isFeature": false,
+  "category": {
+    "$oid": "6666c124bb47bc0cdc247978"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916f047f8a6ac611905616"
+  },
+  "productName": "Apple AirPods 2024",
+  "productDescription": "AirPods deliver an unparalleled wireless headphone experience, from magical setup to high-quality sound.",
+  "image": "https://www.apple.com/newsroom/images/product/airpods/standard/Apple-AirPods-Pro-2nd-gen-hero-220907.jpg.og.jpg?202405161728",
+  "price": 214,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666be7d7fc0240a8813d46b"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916f317f8a6ac611905619"
+  },
+  "productName": "Sony WF-1000XM5",
+  "productDescription": "The WF-1000XM5 reduces external noise over a wide bandwidth, from low to high frequencies.",
+  "image": "https://sony.scene7.com/is/image/sonyglobalsolutions/00-9?$large360ViewerImage$",
+  "price": 248,
+  "isFeature": true,
+  "category": {
+    "$oid": "6666be7d7fc0240a8813d46b"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916f877f8a6ac61190561d"
+  },
+  "productName": "iPhone 14 Pro Max",
+  "productDescription": "The iPhone 14 Pro Max display has rounded corners that follow a beautiful curved design, and these corners are within a standard rectangle. When measured as a standard rectangular shape, the screen is 6.69 inches diagonally (actual viewable area is less).",
+  "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MPU73?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1678830616240",
+  "price": 1099,
+  "isFeature": false,
+  "category": {
+    "$oid": "648f2f15b90ce987ebbedd7a"
+  }
+},
+{
+  "_id": {
+    "$oid": "64916fb07f8a6ac61190561f"
+  },
+  "productName": "Google Pixel 7 Pro",
+  "productDescription": "Introducing Pixel 7 Pro, Google's best-of-everything phone. Powered by Google Tensor G2, it's fast and secure, with an immersive display and amazing battery life.",
+  "image": "https://lh3.googleusercontent.com/SgFMZC_75BjJrZUet9teRVh_2vj-xgOFXsu29Qtdv_aVyhUzqfYobAWNmcEMV4a5iInEOBX9kYufwWaB1uzsPyh8hEt2pVuaig",
+  "price": 899,
+  "isFeature": true,
+  "category": {
+    "$oid": "648f2f15b90ce987ebbedd7a"
+  }
+}]

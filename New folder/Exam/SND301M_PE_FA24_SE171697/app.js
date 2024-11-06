@@ -3,9 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var indexRouter = require('./routes/index');
+const categoryRoute = require('./routes/categoryRouter');
+const registerRoute = require('./routes/registerRouter');
+const loginRoute = require('./routes/loginRouter');
+const jwtAuthen =  require('./controller/authenJWT')
+
 //Use Mongoose and Mongo DB 
 const mongoose = require('mongoose');
-const dbName = 'conFusion';
+const dbName = 'SDN301M_PE_FA24_SE171697DB';
 const dbPort = '27017';
 const dbType = 'mongodb';
 const dbHost = 'localhost';
@@ -14,24 +20,23 @@ const connect = mongoose.connect(dbURL);
 connect.then((db)=>{
   console.log(`Connected to ${dbName} database at: ${dbURL}`);
 })
-//
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//API
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/category',jwtAuthen, categoryRoute);
+app.use('/api/register', registerRoute);
+app.use('/api/login', loginRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,28 @@
+head 
+    title Inventory 
+    link(rel="stylesheet", href="/stylesheets/category.css")
+body 
+    h1 Inventory: 
+    .category-list 
+        each category in data
+            .card
+                .card-header
+                    button.cat-button(type="button" onclick=`window.location.href='/category/${category._id}'`) #{category.categoryName}
+                .card-body
+                    p Description: #{category.categoryDescription}
+                    p Created At: #{new Date(category.createdAt).toLocaleDateString()}
+                    p Last Updated: #{new Date(category.updatedAt).toLocaleDateString()}
+                    .button-container
+                        a.button-update(href=`/category/${category._id}/update`) Update
+                        button.button-delete(onclick=`return confirmDelete(event, "${category._id}");`) Delete
+    // Button to Add Category
+    a.button-add(href='/category/insert') Add Category
+    script.
+        function confirmDelete(event, categoryId, productId) {
+        event.preventDefault(); // Prevent default button behavior
+        // Show confirmation dialog
+        const confirmed = confirm("Are you sure you want to delete this product?");
+            if (confirmed) {
+                window.location.href = `/category/${categoryId}/delete`;
+            }
+        }

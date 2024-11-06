@@ -1,0 +1,92 @@
+body {
+    background-color: #f8f9fa; 
+    margin: 0;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.product-card {
+    flex: 0 1 calc(33.333% - 20px);
+    box-sizing: border-box; 
+    margin-bottom: 20px; 
+    background-color: white; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    margin-bottom: 2%;
+    padding-bottom: 2%;
+}
+.product-image img {
+    width: 100%; 
+    height: auto; 
+}
+
+.product-details {
+    padding: 15px; 
+}
+
+.product-details h2 {
+    font-size: 1.5em; 
+    margin: 0 0 10px; 
+}
+
+.product-details p {
+    margin: 5px 0; 
+    color: #555;
+}
+
+.product-details :nth-child(5){
+    margin: 5px 0; 
+    color: #7e7e7e;
+}
+
+.button-update, .button-delete {
+    padding: 10px 15px;
+    margin-right: 10px;
+    margin-top: 2%;
+    color: white; 
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px; 
+    text-decoration: none; 
+    transition: background-color 0.2s; 
+    float: left;
+    pointer-events: auto;
+}
+
+.button-update:hover {
+    background-color: #0056b3;
+}
+
+.button-delete {
+    float: right;
+    background-color: #dc3545; 
+}
+
+.button-delete:hover {
+    background-color: #c82333;
+}
+
+.button-add {
+    position: fixed; /* Fixes the button to a specific position on the screen */
+    bottom: 20px; /* Distance from the bottom of the viewport */
+    left: 20px; /* Distance from the left of the viewport */
+    padding: 10px 15px; /* Padding for the button */
+    background-color: #28a745; /* Bootstrap success color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+.button-add:hover {
+    background-color: #218838; /* Darker green on hover */
+}

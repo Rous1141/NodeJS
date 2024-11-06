@@ -1,0 +1,98 @@
+doctype html
+html
+  head
+    title Login Page
+    style.
+      body {
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        margin: 0;
+      }
+      .login-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 5px;
+        color: #555;
+      }
+      input[type="text"], input[type="password"] {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      button {
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #4cae4c;
+      }
+      .error-message {
+        color: red;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+  body
+    .login-container
+      h1 Login
+      if message
+        h4 #{message}
+      form
+        label(for="username") Username:
+        input(type="text" name="username" required)
+        label(for="password") Password:
+        input(type="password" name="password" required)
+        button(type="submit") Login
+      h4 Don't have account? Sign up here.
+      a(href="/register") Register link
+    script.
+     document.querySelector('form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+        const username = formData.get('username');
+        const password = formData.get('password');
+        
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        if (response.ok) {
+          var token = data.token; 
+          document.cookie = `token = ${token};path=/;`; // setting up a cookie with the jwt token
+          alert(`Login successful!`);
+          if(response.ok){
+            window.location.href = "/home"
+          }
+          else{
+            alert('Unauthorized access!')
+          }
+        } else {
+          alert('Login failed: ' + (data.message || 'Unknown error'));
+        }
+      });
